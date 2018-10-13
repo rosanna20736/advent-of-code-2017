@@ -1,0 +1,38 @@
+1set b 67
+2set c b
+3jnz a 2
+4jnz 1 5
+5mul b 100
+6sub b -100000
+7set c b
+8sub c -17000
+9set f 1		stops h change final jump goes here
+10set d 2	--------anything here or before inaccessible once passed------
+11set e 2		jnz g -13 goes here
+12set g d		fnz g - 8 goes here
+13mul g e
+14sub g b		
+15jnz g 2		g = 0 allows h change
+16set f 0		allows h change
+17sub e -1
+18set g e
+19sub g b
+20jnz g -8
+21sub d -1	only time d is changed
+22set g d
+23sub g b
+24jnz g -13
+25jnz f 2		h changed only if f = 0
+26sub h -1	changes h
+27set g b		b = c ends prog
+28sub g c		g = c ends prog
+29jnz g 2		g = 0 ends prog
+30jnz 1 3		ends prog
+31sub b -17	only time b is changed
+32jnz 1 -23
+
+when f = 1, a = 1, b = 106700, c = 123700, d=2
+when f changes to 0, these values true. f STAYS 0
+a and c can never change
+b only by +=17
+d only ++
